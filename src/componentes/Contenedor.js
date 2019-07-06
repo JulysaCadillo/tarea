@@ -44,7 +44,7 @@ class Contenedor extends Component{
         const{listaLibros}=this.state
         return(
             <div>
-                Buscador web
+                Buscador de Libros
             
               <div>
                 <div><input  onChange={this.escribiendo}/></div>
