@@ -68,7 +68,7 @@ class Contenedor extends Component{
 
                </div>
               
-               <div style={{backgroundColor:'brown'}}>
+               <div style={{flex:1,backgroundColor:'pink'}}>
                    Carrito de compras
 
                    <div>
