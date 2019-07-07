@@ -44,11 +44,15 @@ class Contenedor extends Component{
     agregarAlCarrito=(libro)=>{
         const{listaCarrito  }=this.state
         listaCarrito.push(libro);
-        this.setState({listaCarrito})
+        let preciototal=0;
+        listaCarrito.forEach((item)=>{
+            preciototal+=item.precio
+        })
+        this.setState({listaCarrito,total:preciototal})
     }
     render(){
 
-        const{listaLibros,listaCarrito}=this.state
+        const{listaLibros,listaCarrito, total}=this.state
         return(
          <div>
                 Buscador de Libros
@@ -66,6 +70,10 @@ class Contenedor extends Component{
               
                <div style={{backgroundColor:'brown'}}>
                    Carrito de compras
+
+                   <div>
+                       Total:{total}
+                   </div>
                    <ListadoElementos libros={listaCarrito} />
                </div>
             </div>

@@ -6,7 +6,11 @@ class ListadoElementos extends Component{
         const{agregarAlCarrito}=this.props
         console.log('haciendo click en el libro..',item)
 
-        agregarAlCarrito(item);
+        if(typeof agregarAlCarrito==='function'){
+            agregarAlCarrito(item);  
+        }
+
+       
       
     }
     render(){
@@ -19,7 +23,7 @@ class ListadoElementos extends Component{
 
                          return(
                              <div onClick={()=>{this.clickLibro(item)}} key={index}>
-                                 {item.nombre}
+                                 {item.nombre} - {item.precio}
                                  </div>
 
                          )
