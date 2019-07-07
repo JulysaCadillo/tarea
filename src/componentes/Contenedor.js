@@ -20,7 +20,8 @@ class Contenedor extends Component{
     constructor(){
         super()
         this.state={
-            listaLibros:arregloLibros
+            listaLibros:arregloLibros,
+            listaCarrito:[]
         }
     }
     escribiendo=(evento)=>{
@@ -33,25 +34,43 @@ class Contenedor extends Component{
         const listadoFiltrado=[];
        for(let i=0;i<arregloLibros.length;i++){
            const libros=arregloLibros[i];
-           if(libros.nombre.startsWith(texto)){
+           if(libros.nombre.toLowerCase().startsWith(texto.toLowerCase())){
                listadoFiltrado.push(libros);
            }
        }
        this.setState({listaLibros:listadoFiltrado})
     }
+
+    agregarAlCarrito=(libro)=>{
+        const{listaCarrito  }=this.state
+        listaCarrito.push(libro);
+        this.setState({listaCarrito})
+    }
     render(){
 
-        const{listaLibros}=this.state
+        const{listaLibros,listaCarrito}=this.state
         return(
-            <div>
+         <div>
                 Buscador de Libros
             
-              <div>
-                <div><input  onChange={this.escribiendo}/></div>
+            <div style={{display:'flex', flexDirection:'row',backgroundColor:'pink'}}>
+                  
+               <div style={{flex:1,backgroundColor:'yellow'}}>
+               <div>
+                    <input  onChange={this.escribiendo}/>
+                </div>
 
-                <ListadoElementos libros={listaLibros} />
-              </div>
-           </div>
+                <ListadoElementos agregarAlCarrito={this.agregarAlCarrito} libros={listaLibros} />
+
+               </div>
+              
+               <div style={{backgroundColor:'brown'}}>
+                   Carrito de compras
+                   <ListadoElementos libros={listaCarrito} />
+               </div>
+            </div>
+
+         </div>
 
         )
     }

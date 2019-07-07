@@ -1,16 +1,24 @@
 import React, {Component} from "react";
 
 class ListadoElementos extends Component{
+
+    clickLibro=(item)=>{
+        const{agregarAlCarrito}=this.props
+        console.log('haciendo click en el libro..',item)
+
+        agregarAlCarrito(item);
+      
+    }
     render(){
         const{libros}=this.props
         return(
             <div>
-                 <div>Libros de Informatica</div>
+               
                  <div>
-                     {libros.map((item)=>{
+                     {libros.map((item,index)=>{
 
                          return(
-                             <div key={item.id}>
+                             <div onClick={()=>{this.clickLibro(item)}} key={index}>
                                  {item.nombre}
                                  </div>
 
